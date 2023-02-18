@@ -11,6 +11,21 @@ const server = http.createServer((req, res) => {
 function respondHello (req, res) {
   res.end(JSON.stringify({ msg: 'hello' }))
 }
+function respondBase64 (req, res) {
+  const phrase = req.url.replace(/^\/b64\//, '')
+  function respondUserAgent (req, res) {
+    const ua = req.headers['user-agent']
+    res.end(JSON.stringify({ ua }))
+  }
+  
+  res.end(JSON.stringify({ b64: Buffer.from(phrase).toString('base64') }))
+}
+
+function respondUserAgent (req, res) {
+  const ua = req.headers['user-agent']
+  res.end(JSON.stringify({ ua }))
+}
+
 
 server.listen(PORT)
 console.log(`Server listening on port ${PORT}`)
