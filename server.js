@@ -4,12 +4,24 @@ const PORT = process.env.PORT || 3000
 
 const server = http.createServer((req, res) => {
   if (req.url === '/') return respondHello(req, res)
+<<<<<<< HEAD
+
+if (req.url.match(/^\/b64\//)) return respondBase64(req, res)
+=======
+  if (req.url.match(/^\/b64\//)) return respondBase64(req, res)
+  if (req.url.match(/^\/b64\//)) return respondBase64(req, res)
+>>>>>>> ddadbf2 (feat: add base64 endpoint)
 
   res.end()
 })
 
 function respondHello (req, res) {
   res.end(JSON.stringify({ msg: 'hello' }))
+}
+
+function respondBase64 (req, res) {
+  const phrase = req.url.replace(/^\/b64\//, '')
+  res.end(JSON.stringify({ b64: Buffer.from(phrase).toString('base64') }))
 }
 function respondBase64 (req, res) {
   const phrase = req.url.replace(/^\/b64\//, '')
