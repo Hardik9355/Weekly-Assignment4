@@ -4,13 +4,9 @@ const PORT = process.env.PORT || 3000
 
 const server = http.createServer((req, res) => {
   if (req.url === '/') return respondHello(req, res)
-<<<<<<< HEAD
 
 if (req.url.match(/^\/b64\//)) return respondBase64(req, res)
-=======
-  if (req.url.match(/^\/b64\//)) return respondBase64(req, res)
-  if (req.url.match(/^\/b64\//)) return respondBase64(req, res)
->>>>>>> ddadbf2 (feat: add base64 endpoint)
+if (req.url.match(/^\/b64\//)) return respondBase64(req, res)
 
   res.end()
 })
